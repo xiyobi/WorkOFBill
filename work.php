@@ -18,17 +18,27 @@
 </html>
 
 <?php   
+
+$dns = "mysql:host=127.0.0.1;dbname=work_of_bill";
+$username = "root";
+$password = "root";
+$pdo = new PDO($dns, $username, $password);
+$WorkTimes = $pdo->query(query:"Select *from work_times");
+print_r($WorkTimes->fetch());
+var_dump($pdo);
+
+
 if (isset($_GET['Arrived_person']) && isset($_GET['leaved_person'])) {
     
-    $Arrived_person = new DateTime($_GET['Arrived_person']);
-    $leaved_person = new DateTime($_GET['leaved_person']);
+    $Arrived_person = $_GET['Arrived_person'];
+    $leaved_person = $_GET['leaved_person'];
     
- 
-    $difference = $leaved_person->diff($Arrived_person);
+    $query = "Insert into work_times (Arrived_person,leaved_person) values(:Arrived_person,:leaved_person)";
+    $stmt = $pdo->prepare($query);
+    
+    $stmt->bindParam(':Arrived_person',$Arrived_person);
+    $stmt->bindParam(':leaved_person',$leaved_person);
+    $stmt->execute();
 
-    
-    echo "Kun: " . $difference->days . "<br><br>";
-    echo "Soat: " . $difference->h . "<br><br>";
-    echo "Daqiqa: " . $difference->i;
 }
 ?>
