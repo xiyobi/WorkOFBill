@@ -1,0 +1,24 @@
+/* body{
+    background-color: rgb(105, 66, 19);
+} */
+body form {
+    display: flex;
+    margin-left: 40px;
+    margin-top: 40px;
+    font-size: 26px;
+    
+    
+}
+body form button {
+    margin-left: 40px;
+    font-size: 26px;
+    font-weight: bold;
+    font-style: italic;
+    background-color: bisque;
+   
+}
+body form input {
+    background-color: bisque;
+    font-style: italic;
+   
+}
